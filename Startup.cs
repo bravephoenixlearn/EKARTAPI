@@ -29,7 +29,12 @@ namespace EKARTAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options =>
-            options.UseSqlServer(_config.GetConnectionString("EkartApiDbCon")));
+                options.UseSqlServer(_config.GetConnectionString("EkartApiDbCon")));
+
+            services.AddCors(options => 
+                options.AddDefaultPolicy(policy => 
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200")));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -50,6 +55,8 @@ namespace EKARTAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

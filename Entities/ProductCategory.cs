@@ -10,7 +10,5 @@ namespace EKARTAPI.Entities
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public string ImageUrl{ get; set; }
-
-        public List<ProductSubCategory> ProductSubCategories { get; set; }
     }
 }
